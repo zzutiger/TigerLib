@@ -1,0 +1,66 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.1"
+
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.collection:collection:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+
+ext {
+    libraryPackaging = 'aar'                                            //上传aar形式的打包文件
+
+    // jcenter
+    bintrayRepo = "androidx-adapter"                                             // 你上传的位于bintray中的Repository名称，如果没有创建会有一个叫maven的
+    name = 'androidx-adapter'                                                // 必须和library module的名字相同
+    libraryDesc = 'androidx recyclerview adapter'
+    publishedGroupId = 'cn.ietiger.adapterx'                // 填写groupId， 一般是包名，比如：com.android.support
+    versionName = '1.0.1'                                               // 版本号，比如：22.2.1
+    websiteUrl = 'https://github.com/zzutiger/TigerLib'              // 可以填写github上的库地址.
+    issueTrackerUrl = 'https://github.com/zzutiger/TigerLib/issues'  // 可以填写github库的issue地址.
+    vcsUrl = 'https://github.com/zzutiger/TigerLib.git'              // 可以填写github上库的地址.
+    licenseName = "Apache-2.0"
+    libraryVersionDesc = 'version descriotion'
+
+    // maven
+    artifact = 'androidx-adapter'                                            // 必须和library module的名字相同
+    libraryName = 'androidx-adapter'
+    developerId = 'zzutiger'
+    developerName = 'zzutiger'
+    developerEmail = '1510560788@qq.com'
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+}
+
+//apply from: 'https://raw.githubusercontent.com/andforce/release-android-lib-to-jcenter/master/jcenter.gradle'
+
+apply from: 'android-maven-install.gradle'
+apply from: 'android-tasks.gradle'
+apply from: 'bintray.gradle'

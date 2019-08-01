@@ -1,1 +1,1 @@
-include ':app', ':rvadapter'
+include ':app', ':androidx-adapter'
